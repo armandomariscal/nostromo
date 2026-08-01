@@ -41,3 +41,5 @@ vendor/bundle/
 .rubocop_todo.yml
 *.swp
 *~
+
+docs
