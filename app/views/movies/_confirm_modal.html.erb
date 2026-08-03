@@ -1,0 +1,43 @@
+<dialog
+  id="confirm-<%= movie.id %>"
+  data-dialog-id="confirm-<%= movie.id %>"
+  class="m-auto rounded-xl bg-zinc-900 p-0 text-zinc-100 backdrop:bg-black/70">
+
+  <div class="w-96 rounded-xl p-6">
+
+    <h3 class="text-lg font-semibold">
+      Confirm action
+    </h3>
+
+    <p class="mt-2 text-sm text-zinc-400">
+      <%= viewed ?
+          "Do you want to mark this movie as not viewed?" :
+          "Do you want to mark this movie as viewed?" %>
+    </p>
+
+    <div class="mt-6 flex justify-end gap-3">
+
+      <button
+        type="button"
+        onclick="this.closest('dialog').close()"
+        class="cursor-pointer rounded-lg bg-zinc-700 px-4 py-2 text-sm">
+        Cancel
+      </button>
+
+      <%= button_to(
+        "Confirm",
+        movie_user_movie_path(movie),
+        method: :patch,
+        params: {
+          viewed: !viewed
+        },
+        onclick: "this.closest('dialog').close()",
+        class: "cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm",
+        form_class: "inline"
+      ) %>
+
+    </div>
+
+  </div>
+
+</dialog>
