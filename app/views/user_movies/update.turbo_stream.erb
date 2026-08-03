@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@movie) do %>
+  <%= render "movies/movie",
+      movie: @movie,
+      current_user: @current_user %>
+<% end %>
