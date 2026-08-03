@@ -13,6 +13,10 @@ class UserMoviesController < ApplicationController
       viewed: params[:viewed]
     )
 
+    @total_movies = Movie.count
+    @viewed_movies = @current_user.user_movies.where(viewed: true).count
+    @progress_percentage = (@viewed_movies.to_f / @total_movies * 100).round
+
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to root_path }

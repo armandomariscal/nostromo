@@ -1,0 +1,23 @@
+<div id="movie-progress">
+
+  <div class="flex justify-between text-xs text-zinc-400 mb-2">
+    <span>
+      Progress
+    </span>
+
+    <span>
+      <%= viewed_movies %>/<%= total_movies %>
+    </span>
+  </div>
+
+
+  <div class="h-2 w-48 rounded-full bg-zinc-800 overflow-hidden">
+
+    <div
+      class="h-full rounded-full bg-indigo-600 transition-all"
+      style="width: <%= percentage %>%">
+    </div>
+
+  </div>
+
+</div>

@@ -3,3 +3,11 @@
       movie: @movie,
       current_user: @current_user %>
 <% end %>
+
+
+<%= turbo_stream.replace "movie-progress" do %>
+  <%= render "movies/progress",
+      total_movies: @total_movies,
+      viewed_movies: @viewed_movies,
+      percentage: @progress_percentage %>
+<% end %>
