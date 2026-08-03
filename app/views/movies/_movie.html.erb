@@ -1,0 +1,61 @@
+<% viewed = movie.user_movies.find_by(user: current_user)&.viewed %>
+
+<%= turbo_frame_tag dom_id(movie) do %>
+
+  <div class="
+    overflow-hidden rounded-xl shadow-lg transition
+    hover:-translate-y-1 hover:shadow-2xl
+    <%= viewed ? 'bg-zinc-900' : 'bg-zinc-900 opacity-60' %>
+  ">
+
+    <img
+      src="/covers/<%= movie.year %>.jpg"
+      alt="<%= movie.title %>"
+      class="
+        aspect-[2/3] w-full object-cover
+        <%= 'grayscale' unless viewed %>
+      "
+    >
+
+    <div class="p-4">
+
+      <div class="flex items-start justify-between gap-2">
+
+        <div>
+          <h2 class="text-lg font-semibold">
+            <%= movie.title %>
+          </h2>
+
+          <p class="mt-1 text-sm text-zinc-400">
+            <%= movie.year %>
+          </p>
+        </div>
+
+        <% if viewed %>
+          <span class="rounded bg-green-600 px-2 py-1 text-xs font-medium">
+            Viewed
+          </span>
+        <% end %>
+
+      </div>
+
+      <div class="mt-4">
+
+        <button
+          type="button"
+          onclick="document.getElementById('confirm-<%= movie.id %>').showModal()"
+          class="w-full cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500">
+          <%= viewed ? "Mark as not viewed" : "Mark as viewed" %>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+<%= render "movies/confirm_modal",
+    movie: movie,
+    viewed: viewed %>
