@@ -65,6 +65,6 @@ class CrewMembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def crew_member_params
-      params.fetch(:crew_member, {})
+      params.require(:crew_member).permit(:name)
     end
 end

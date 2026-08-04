@@ -2,6 +2,11 @@
 
 <%= render @crew_member %>
 
+<p>
+  <strong>Name:</strong>
+  <%= @crew_member.name %>
+</p>
+
 <div>
   <%= link_to "Edit this crew member", edit_crew_member_path(@crew_member) %> |
   <%= link_to "Back to crew members", crew_members_path %>
