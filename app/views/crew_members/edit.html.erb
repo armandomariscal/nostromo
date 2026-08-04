@@ -1,12 +1,27 @@
-<% content_for :title, "Editing crew member" %>
+<% content_for :title, "Edit Crew Member" %>
 
-<h1>Editing crew member</h1>
+<div class="max-w-2xl mx-auto px-6 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">
+      Edit Crew Member
+    </h1>
 
-<%= render "form", crew_member: @crew_member %>
+    <p class="mt-2 text-gray-600">
+      Update the information for this crew member.
+    </p>
+  </div>
 
-<br>
+  <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+    <%= render "form", crew_member: @crew_member %>
+  </div>
 
-<div>
-  <%= link_to "Show this crew member", @crew_member %> |
-  <%= link_to "Back to crew members", crew_members_path %>
+  <div class="mt-6 flex items-center gap-4">
+    <%= link_to "View",
+        @crew_member,
+        class: "text-blue-600 hover:text-blue-800 hover:underline" %>
+
+    <%= link_to "← Back",
+        crew_members_path,
+        class: "text-gray-600 hover:text-gray-900 hover:underline" %>
+  </div>
 </div>

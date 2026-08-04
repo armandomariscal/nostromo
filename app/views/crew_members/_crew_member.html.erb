@@ -1,11 +1,12 @@
-<div id="<%= dom_id crew_member %>">
-  <p>
-    <strong>ID:</strong>
-    <%= crew_member.id %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
+<div
+  id="<%= dom_id crew_member %>"
+  class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition"
+>
+  <h2 class="text-lg font-semibold text-gray-900">
     <%= crew_member.name %>
+  </h2>
+
+  <p class="mt-1 text-sm text-gray-500">
+    Crew Member #<%= crew_member.id %>
   </p>
 </div>

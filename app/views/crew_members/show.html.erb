@@ -1,15 +1,57 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @crew_member.name %>
 
-<%= render @crew_member %>
+<% if notice.present? %>
+  <div class="mx-auto mt-6 max-w-3xl rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-green-700">
+    <%= notice %>
+  </div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @crew_member.name %>
-</p>
+<div class="mx-auto max-w-3xl px-6 py-8">
+  <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+    <div class="border-b border-gray-200 px-6 py-4">
+      <h1 class="text-2xl font-bold text-gray-900">
+        Crew Member
+      </h1>
+    </div>
 
-<div>
-  <%= link_to "Edit this crew member", edit_crew_member_path(@crew_member) %> |
-  <%= link_to "Back to crew members", crew_members_path %>
+    <dl class="divide-y divide-gray-200">
+      <div class="flex px-6 py-4">
+        <dt class="w-32 font-semibold text-gray-600">
+          ID
+        </dt>
+        <dd class="text-gray-900">
+          <%= @crew_member.id %>
+        </dd>
+      </div>
 
-  <%= button_to "Destroy this crew member", @crew_member, method: :delete %>
+      <div class="flex px-6 py-4">
+        <dt class="w-32 font-semibold text-gray-600">
+          Name
+        </dt>
+        <dd class="text-gray-900">
+          <%= @crew_member.name %>
+        </dd>
+      </div>
+    </dl>
+
+    <div class="flex items-center justify-between border-t border-gray-200 bg-gray-50 px-6 py-4">
+      <div class="space-x-4">
+        <%= link_to "← Back",
+            crew_members_path,
+            class: "text-gray-600 hover:text-gray-900" %>
+
+        <%= link_to "Edit",
+            edit_crew_member_path(@crew_member),
+            class: "rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-amber-600" %>
+      </div>
+
+      <%= button_to "Delete",
+          @crew_member,
+          method: :delete,
+          data: {
+            turbo_confirm: "Are you sure you want to delete this crew member?"
+          },
+          class: "rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700" %>
+    </div>
+  </div>
 </div>

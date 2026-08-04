@@ -1,20 +1,27 @@
-<%= form_with(model: crew_member) do |form| %>
+<%= form_with(model: crew_member, class: "space-y-6") do |form| %>
   <% if crew_member.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(crew_member.errors.count, "error") %> prohibited this crew_member from being saved:</h2>
+    <div class="rounded-lg border border-red-300 bg-red-50 p-4">
+      <h2 class="font-semibold text-red-700">
+        <%= pluralize(crew_member.errors.count, "error") %> prohibited this crew member from being saved:
+      </h2>
 
-      <ul>
+      <ul class="mt-2 list-disc list-inside text-red-600">
         <% crew_member.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
+
   <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name,
+        class: "mb-2 block text-sm font-medium text-gray-700" %>
+
+    <%= form.text_field :name,
+        class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
   </div>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700" %>
   </div>
 <% end %>

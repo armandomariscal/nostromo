@@ -1,16 +1,63 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Crew members" %>
 
-<h1>Crew members</h1>
+<div class="max-w-6xl mx-auto px-6 py-8">
+  <div class="mb-8 flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-gray-900">
+      Crew Members
+    </h1>
 
-<div id="crew_members">
-  <% @crew_members.each do |crew_member| %>
-    <%= render crew_member %>
-    <p>
-      <%= link_to "Show this crew member", crew_member %>
-    </p>
-  <% end %>
+    <%= link_to "New Crew Member",
+        new_crew_member_path,
+        class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" %>
+  </div>
+
+  <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+            ID
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Name
+          </th>
+          <th class="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Actions
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <% @crew_members.each do |crew_member| %>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 text-sm text-gray-600">
+              <%= crew_member.id %>
+            </td>
+
+            <td class="px-6 py-4 font-medium text-gray-900">
+              <%= crew_member.name %>
+            </td>
+
+            <td class="px-6 py-4 text-right space-x-4">
+              <%= link_to "Show",
+                  crew_member,
+                  class: "text-blue-600 hover:underline" %>
+
+              <%= link_to "Edit",
+                  edit_crew_member_path(crew_member),
+                  class: "text-amber-600 hover:underline" %>
+
+              <%= link_to "Delete",
+                  crew_member,
+                  data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Delete this crew member?"
+                  },
+                  class: "text-red-600 hover:underline" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to "New crew member", new_crew_member_path %>
