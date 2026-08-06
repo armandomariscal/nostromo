@@ -14,6 +14,11 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @current_user = User.first
     @movie = Movie.find(params[:id])
+
+    @total_movies = Movie.count
+    @viewed_movies = @current_user.user_movies.where(viewed: true).count
+    @progress_percentage = (@viewed_movies.to_f / @total_movies * 100).round
   end
 end

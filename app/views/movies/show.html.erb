@@ -1,6 +1,11 @@
 <% content_for :title, @movie.title %>
 
-<div class="mx-auto  px-6 py-10 bg-zinc-950 min-h-screen">
+ <%= render "navbar",
+      total_movies: @total_movies,
+      viewed_movies: @viewed_movies,
+      progress_percentage: @progress_percentage %>
+
+<div class="mx-auto px-6 py-10 bg-zinc-950 min-h-screen mt-14">
   <%= link_to "← Back to collection",
       root_path,
       class: "mb-8 inline-block text-sm text-zinc-400 hover:text-white" %>
