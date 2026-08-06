@@ -9,14 +9,16 @@
   ">
     <div class="relative">
 
-      <img
-        src="/covers/<%= movie.year %>.jpg"
-        alt="<%= movie.title %>"
-        class="
-          aspect-[2/3] w-full object-cover
-          <%= 'grayscale' unless viewed %>
-        "
-      >
+      <%= link_to movie_path(movie), data: { turbo: false } do %>
+        <img
+          src="/covers/<%= movie.year %>.jpg"
+          alt="<%= movie.title %>"
+          class="
+            aspect-[2/3] w-full object-cover
+            <%= 'grayscale' unless viewed %>
+          "
+        >
+      <% end %>
 
       <% if viewed %>
         <span class="

@@ -12,4 +12,8 @@ class MoviesController < ApplicationController
     @progress_percentage =
       (@viewed_movies.to_f / @total_movies * 100).round
   end
+
+  def show
+    @movie = Movie.find(params[:id])
+  end
 end

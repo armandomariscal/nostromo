@@ -1,0 +1,67 @@
+<% content_for :title, @movie.title %>
+
+<div class="mx-auto  px-6 py-10 bg-zinc-950 min-h-screen">
+  <%= link_to "← Back to collection",
+      root_path,
+      class: "mb-8 inline-block text-sm text-zinc-400 hover:text-white" %>
+
+  <div class="overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl">
+    <div class="grid gap-8 p-8 md:grid-cols-[320px_1fr]">
+
+      <div>
+        <img
+          src="/covers/<%= @movie.year %>.jpg"
+          alt="<%= @movie.title %>"
+          class="w-full rounded-xl object-cover shadow-lg"
+        >
+      </div>
+
+      <div class="flex flex-col">
+        <span class="text-sm uppercase tracking-[0.25em] text-zinc-500">
+          Alien Collection
+        </span>
+
+        <h1 class="mt-2 text-5xl font-bold text-white">
+          <%= @movie.title %>
+        </h1>
+
+        <p class="mt-3 text-xl text-zinc-400">
+          <%= @movie.year %>
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-lg bg-zinc-800 p-4">
+            <p class="text-xs uppercase tracking-wider text-zinc-500">
+              ID
+            </p>
+
+            <p class="mt-1 text-lg font-semibold text-white">
+              <%= @movie.id %>
+            </p>
+          </div>
+
+          <div class="rounded-lg bg-zinc-800 p-4">
+            <p class="text-xs uppercase tracking-wider text-zinc-500">
+              Release Year
+            </p>
+
+            <p class="mt-1 text-lg font-semibold text-white">
+              <%= @movie.year %>
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <h2 class="text-lg font-semibold text-white">
+            Overview
+          </h2>
+
+          <p class="mt-3 leading-7 text-zinc-300">
+            Information about this movie will be displayed here.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
