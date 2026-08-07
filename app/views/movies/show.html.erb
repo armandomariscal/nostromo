@@ -19,6 +19,16 @@
           alt="<%= @movie.title %>"
           class="w-full rounded-xl object-cover shadow-lg"
         >
+        <% viewed = @user_movie&.viewed || false %>
+
+        <button
+          id="viewed-button-<%= @movie.id %>"
+          type="button"
+          onclick="document.getElementById('confirm-<%= @movie.id %>').showModal()"
+          class="w-full mt-6 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white"
+        >
+          <%= viewed ? "Mark as not viewed" : "Mark as viewed" %>
+        </button>
       </div>
 
       <div class="flex flex-col">
@@ -70,3 +80,6 @@
     </div>
   </div>
 </div>
+<%= render "confirm_modal",
+    movie: @movie,
+    viewed: viewed %>

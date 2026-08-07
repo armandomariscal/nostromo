@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_current_user
   before_action :set_movie, only: :show
+  before_action :set_user_movie, only: :show
   before_action :set_progress
 
   def index
@@ -18,6 +19,10 @@ class MoviesController < ApplicationController
 
   def set_movie
     @movie = Movie.find(params[:id])
+  end
+
+  def set_user_movie
+    @user_movie = @current_user.user_movies.find_by(movie: @movie)
   end
 
   def set_progress

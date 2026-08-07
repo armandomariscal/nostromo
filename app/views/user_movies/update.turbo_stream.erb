@@ -4,10 +4,21 @@
       current_user: @current_user %>
 <% end %>
 
-
 <%= turbo_stream.replace "movie-progress" do %>
   <%= render "movies/progress",
       total_movies: @total_movies,
       viewed_movies: @viewed_movies,
       percentage: @progress_percentage %>
+<% end %>
+
+<%= turbo_stream.replace "viewed-button-#{@movie.id}" do %>
+  <div id="viewed-button-<%= @movie.id %>">
+    <button
+      type="button"
+      onclick="document.getElementById('confirm-<%= @movie.id %>').showModal()"
+      class="w-full mt-6 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white"
+    >
+      <%= @user_movie.viewed ? "Mark as not viewed" : "Mark as viewed" %>
+    </button>
+  </div>
 <% end %>
