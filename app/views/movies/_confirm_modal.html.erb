@@ -31,6 +31,7 @@
         params: {
           viewed: !viewed
         },
+        data: { action: "click->dialog#close" }, 
         onclick: "this.closest('dialog').close()",
         class: "cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm",
         form_class: "inline"

@@ -12,13 +12,11 @@
 <% end %>
 
 <%= turbo_stream.replace "viewed-button-#{@movie.id}" do %>
-  <div id="viewed-button-<%= @movie.id %>">
-    <button
-      type="button"
-      onclick="document.getElementById('confirm-<%= @movie.id %>').showModal()"
-      class="w-full mt-6 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white"
-    >
-      <%= @user_movie.viewed ? "Mark as not viewed" : "Mark as viewed" %>
-    </button>
-  </div>
+  <%= render "movies/viewed_button", movie: @movie, user_movie: @user_movie %>
+<% end %>
+
+<%= turbo_stream.replace "confirm-#{@movie.id}" do %>
+  <%= render "movies/confirm_modal",
+      movie: @movie,
+      viewed: (@user_movie&.viewed || false) %>
 <% end %>

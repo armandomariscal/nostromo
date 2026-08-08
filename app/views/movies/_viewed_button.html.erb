@@ -1,0 +1,11 @@
+<%# app/views/movies/_viewed_button.html.erb %>
+<% viewed = user_movie&.viewed || false %>
+
+<button
+  id="viewed-button-<%= movie.id %>"
+  type="button"
+  onclick="document.getElementById('confirm-<%= movie.id %>').showModal()"
+  class="w-full mt-6 cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors"
+>
+  <%= viewed ? "Mark as not viewed" : "Mark as viewed" %>
+</button>
