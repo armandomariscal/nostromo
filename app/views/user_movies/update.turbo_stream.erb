@@ -1,3 +1,5 @@
+<% viewed = @user_movie&.viewed || false %>
+
 <%= turbo_stream.replace dom_id(@movie) do %>
   <%= render "movies/movie",
       movie: @movie,
@@ -11,12 +13,29 @@
       percentage: @progress_percentage %>
 <% end %>
 
-<%= turbo_stream.replace "viewed-button-#{@movie.id}" do %>
-  <%= render "movies/viewed_button", movie: @movie, user_movie: @user_movie %>
+<%= turbo_stream.replace "movie-cover-#{@movie.id}" do %>
+  <div id="movie-cover-<%= @movie.id %>">
+    <div class="relative">
+      <img
+        src="/covers/<%= @movie.year %>.jpg"
+        alt="<%= @movie.title %>"
+        class="w-full rounded-xl object-cover shadow-lg transition duration-300 <%= 'grayscale' unless viewed %>"
+      >
+      <% if viewed %>
+        <span class="absolute top-2 left-2 rounded bg-green-600/80 px-2 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+          Viewed
+        </span>
+      <% end %>
+    </div>
+
+    <div class="mt-2">
+      <%= render "movies/viewed_button", movie: @movie, user_movie: @user_movie %>
+    </div>
+  </div>
 <% end %>
 
 <%= turbo_stream.replace "confirm-#{@movie.id}" do %>
   <%= render "movies/confirm_modal",
       movie: @movie,
-      viewed: (@user_movie&.viewed || false) %>
+      viewed: viewed %>
 <% end %>

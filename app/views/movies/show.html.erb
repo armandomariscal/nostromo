@@ -1,4 +1,5 @@
 <% content_for :title, @movie.title %>
+<% viewed = @user_movie&.viewed || false %>
 
 <%= render "navbar",
       total_movies: @total_movies,
@@ -13,13 +14,23 @@
   <div class="overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl">
     <div class="grid gap-8 p-8 md:grid-cols-[320px_1fr]">
 
-      <div>
-        <img
-          src="/covers/<%= @movie.year %>.jpg"
-          alt="<%= @movie.title %>"
-          class="w-full rounded-xl object-cover shadow-lg"
-        >
-        <%= render "movies/viewed_button", movie: @movie, user_movie: @user_movie %>
+      <div id="movie-cover-<%= @movie.id %>">
+        <div class="relative">
+          <img
+            src="/covers/<%= @movie.year %>.jpg"
+            alt="<%= @movie.title %>"
+            class="w-full rounded-xl object-cover shadow-lg transition duration-300 <%= 'grayscale' unless viewed %>"
+          >
+          <% if viewed %>
+            <span class="absolute top-2 left-2 rounded bg-green-600/80 px-2 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+              Viewed
+            </span>
+          <% end %>
+        </div>
+
+        <div class="mt-2">
+          <%= render "movies/viewed_button", movie: @movie, user_movie: @user_movie %>
+        </div>
       </div>
 
       <div class="flex flex-col">
@@ -74,4 +85,4 @@
 
 <%= render "confirm_modal",
     movie: @movie,
-    viewed: (@user_movie&.viewed || false) %>
+    viewed: viewed %>
