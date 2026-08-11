@@ -77,9 +77,22 @@
             Information about this movie will be displayed here.
           </p>
 
-          <%= link_to "Escribir reseña",
-          new_movie_review_path(@movie),
-          class: "..." %>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <%= link_to new_movie_review_path(@movie),
+                class: "inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-200" do %>
+              <span>✎</span>
+              Add review
+            <% end %>
+
+          <button
+            type="button"
+            onclick="document.getElementById('reviews-modal').showModal()"
+            class="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2.5 text-sm font-semibold text-zinc-200 transition hover:border-zinc-600 hover:bg-zinc-700 hover:text-white"
+          >
+            <span>★</span>
+            View reviews (<%= @movie.reviews.count %>)
+          </button>
+          </div>
         </div>
       </div>
 
@@ -90,3 +103,5 @@
 <%= render "confirm_modal",
     movie: @movie,
     viewed: viewed %>
+
+<%= render "reviews/modal", movie: @movie %>    
