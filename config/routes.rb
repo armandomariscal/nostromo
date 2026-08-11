@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :movies do
     resource :user_movie, only: [:update]
+    resource :review, only: [:new, :create]
   end
 end
