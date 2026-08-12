@@ -11,9 +11,13 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @crew_members = JSON.parse(
+    crew_data = JSON.parse(
       File.read(Rails.root.join("tmp", "crew_members.json"))
-    )["crew_members"]
+    )
+
+    @crew_members = crew_data
+      .find { |movie| movie["year"] == @movie.year }
+      &.fetch("crew_members", []) || []
   end
 
   private
