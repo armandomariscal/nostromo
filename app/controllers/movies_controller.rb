@@ -1,3 +1,5 @@
+require "json"
+
 class MoviesController < ApplicationController
   before_action :set_current_user
   before_action :set_movie, only: :show
@@ -9,6 +11,9 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @crew_members = JSON.parse(
+      File.read(Rails.root.join("tmp", "crew_members.json"))
+    )["crew_members"]
   end
 
   private
