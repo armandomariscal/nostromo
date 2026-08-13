@@ -1,23 +1,16 @@
-<div class="min-h-screen bg-zinc-950 text-zinc-100">
-
-  <!-- Navbar -->
+<div class="min-h-screen bg-zinc-950">
   <%= render "navbar",
       total_movies: @total_movies,
       viewed_movies: @viewed_movies,
       progress_percentage: @progress_percentage %>
 
   <main class="mx-auto max-w-7xl px-6 pt-24 pb-10">
-
     <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-
       <% @movies.each do |movie| %>
         <%= render "movie",
             movie: movie,
             current_user: @current_user %>
       <% end %>
-
     </div>
-
   </main>
-
 </div>

@@ -1,62 +1,44 @@
-<%# app/views/movies/_movie.html.erb %>
 <% user_movie = movie.user_movies.find_by(user: current_user) %>
 <% viewed = user_movie&.viewed || false %>
 
 <%= turbo_frame_tag dom_id(movie) do %>
 
   <div class="
-    overflow-hidden rounded-xl shadow-lg transition
-    hover:-translate-y-1 hover:shadow-2xl
-    <%= viewed ? 'bg-zinc-900' : 'bg-zinc-900 opacity-60' %>
+    rounded-xl border border-transparent bg-zinc-900 transition
+    hover:border-green-600
+    <%= 'opacity-60' unless viewed %>
   ">
-    <div class="relative">
 
+    <div class="relative">
       <%= link_to movie_path(movie), data: { turbo: false } do %>
         <img
           src="/covers/<%= movie.year %>.jpg"
           alt="<%= movie.title %>"
-          class="
-            aspect-[2/3] w-full object-cover
-            <%= 'grayscale' unless viewed %>
-          "
+          class="aspect-[2/3] w-full rounded-t-xl object-cover <%= 'grayscale' unless viewed %>"
         >
       <% end %>
 
       <% if viewed %>
-        <span class="
-            absolute top-0 left-0
-            bg-green-600/70
-            px-2 py-0.5
-            text-[10px]
-            uppercase
-            tracking-wider
-            font-semibold
-            text-white
-            ">
-            Viewed
+        <span class="absolute left-2 top-2 rounded bg-green-600/70 px-2 py-0.5 text-[10px] text-white">
+          Viewed
         </span>
       <% end %>
-
     </div>
 
     <div class="p-4">
+      <h2 class="text-lg font-semibold text-white">
+        <%= movie.title %>
+      </h2>
 
-      <div>
-
-        <h2 class="text-lg font-semibold">
-          <%= movie.title %>
-        </h2>
-
-        <p class="mt-1 text-sm text-zinc-400">
-          <%= movie.year %>
-        </p>
-
-      </div>
+      <p class="mt-1 text-sm text-zinc-400">
+        <%= movie.year %>
+      </p>
 
       <div class="mt-4">
-        <%= render "movies/viewed_button", movie: movie, user_movie: user_movie %>
+        <%= render "movies/viewed_button",
+            movie: movie,
+            user_movie: user_movie %>
       </div>
-
     </div>
 
   </div>
