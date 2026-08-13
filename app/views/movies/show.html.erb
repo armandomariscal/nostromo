@@ -12,8 +12,8 @@
 
   <main class="mx-auto max-w-6xl">
     <div class="rounded-2xl bg-zinc-900 p-8">
-      <div class="grid gap-8 md:grid-cols-[320px_1fr]">
 
+      <div class="grid gap-8 md:grid-cols-[320px_1fr]">
         <div id="movie-cover-<%= @movie.id %>">
           <div class="relative">
             <img
@@ -88,39 +88,12 @@
         </div>
       </div>
 
-      <section class="mt-10 border-t border-zinc-800 pt-8">
-        <h2 class="text-lg font-semibold text-white">
-          Crew Members
-        </h2>
+      <%= render "movies/crew_members",
+          crew_members: @crew_members %>
 
-        <table class="mt-4 w-full text-left text-sm">
-          <thead class="text-zinc-500">
-            <tr>
-              <th class="py-2">Name</th>
-              <th class="py-2">Role</th>
-              <th class="py-2">Type</th>
-            </tr>
-          </thead>
+      <%= render "movies/ships",
+          ships: @ships %>
 
-          <tbody class="text-zinc-300">
-            <% @crew_members.each do |crew_member| %>
-              <tr class="border-t border-zinc-800">
-                <td class="py-3">
-                  <%= crew_member["name"] %>
-                </td>
-
-                <td class="py-3">
-                  <%= crew_member["role"] %>
-                </td>
-
-                <td class="py-3 text-zinc-500">
-                  <%= crew_member["type"] %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </section>
     </div>
   </main>
 </div>

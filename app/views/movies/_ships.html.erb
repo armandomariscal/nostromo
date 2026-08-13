@@ -1,0 +1,33 @@
+<section class="mt-10 border-t border-zinc-800 pt-8">
+  <h2 class="text-lg font-semibold text-white">
+    Ships
+  </h2>
+
+  <table class="mt-4 w-full text-left text-sm">
+    <thead class="text-zinc-500">
+      <tr>
+        <th class="py-2">Name</th>
+        <th class="py-2">Type</th>
+        <th class="py-2">Operator</th>
+      </tr>
+    </thead>
+
+    <tbody class="text-zinc-300">
+      <% ships.each do |ship| %>
+        <tr class="border-t border-zinc-800">
+          <td class="py-3">
+            <%= ship["name"] %>
+          </td>
+
+          <td class="py-3 text-zinc-500">
+            <%= ship["type"] %>
+          </td>
+
+          <td class="py-3">
+            <%= ship["operator"] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
