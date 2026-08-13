@@ -2,9 +2,9 @@
 <% viewed = @user_movie&.viewed || false %>
 
 <%= render "navbar",
-      total_movies: @total_movies,
-      viewed_movies: @viewed_movies,
-      progress_percentage: @progress_percentage %>
+    total_movies: @total_movies,
+    viewed_movies: @viewed_movies,
+    progress_percentage: @progress_percentage %>
 
 <div class="min-h-screen bg-zinc-950 px-6 py-10 mt-14">
   <%= link_to "← Back to collection", root_path,
@@ -13,80 +13,10 @@
   <main class="mx-auto max-w-6xl">
     <div class="rounded-2xl bg-zinc-900 p-8">
 
-      <div class="grid gap-8 md:grid-cols-[320px_1fr]">
-        <div id="movie-cover-<%= @movie.id %>">
-          <div class="relative">
-            <img
-              src="/covers/<%= @movie.year %>.jpg"
-              alt="<%= @movie.title %>"
-              class="w-full rounded-xl <%= 'grayscale' unless viewed %>"
-            >
-
-            <% if viewed %>
-              <span class="absolute left-2 top-2 rounded bg-green-600 px-2 py-1 text-xs text-white">
-                Viewed
-              </span>
-            <% end %>
-          </div>
-
-          <div class="mt-2">
-            <%= render "movies/viewed_button",
-                movie: @movie,
-                user_movie: @user_movie %>
-          </div>
-        </div>
-
-        <div>
-          <p class="text-sm uppercase tracking-widest text-zinc-500">
-            Alien Collection
-          </p>
-
-          <h1 class="mt-2 text-5xl font-bold text-white">
-            <%= @movie.title %>
-          </h1>
-
-          <p class="mt-2 text-xl text-zinc-400">
-            <%= @movie.year %>
-          </p>
-
-          <div class="mt-8 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-lg bg-zinc-800 p-4">
-              <p class="text-xs text-zinc-500">ID</p>
-              <p class="text-lg text-white"><%= @movie.id %></p>
-            </div>
-
-            <div class="rounded-lg bg-zinc-800 p-4">
-              <p class="text-xs text-zinc-500">Release Year</p>
-              <p class="text-lg text-white"><%= @movie.year %></p>
-            </div>
-          </div>
-
-          <section class="mt-10">
-            <h2 class="text-lg font-semibold text-white">
-              Overview
-            </h2>
-
-            <p class="mt-3 text-zinc-300">
-              Information about this movie will be displayed here.
-            </p>
-
-            <div class="mt-6 flex gap-3">
-              <%= link_to new_movie_review_path(@movie),
-                  class: "rounded-lg bg-white px-4 py-2 text-sm text-zinc-900 hover:bg-zinc-200" do %>
-                ✎ Add review
-              <% end %>
-
-              <button
-                type="button"
-                onclick="document.getElementById('reviews-modal').showModal()"
-                class="rounded-lg bg-zinc-800 px-4 py-2 text-sm text-zinc-200 hover:bg-zinc-700"
-              >
-                ★ View reviews (<%= @movie.reviews.count %>)
-              </button>
-            </div>
-          </section>
-        </div>
-      </div>
+      <%= render "movies/details",
+          movie: @movie,
+          viewed: viewed,
+          user_movie: @user_movie %>
 
       <%= render "movies/crew_members",
           crew_members: @crew_members %>
@@ -102,4 +32,5 @@
     movie: @movie,
     viewed: viewed %>
 
-<%= render "reviews/modal", movie: @movie %>
+<%= render "reviews/modal",
+    movie: @movie %>
