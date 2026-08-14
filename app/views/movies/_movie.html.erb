@@ -3,11 +3,15 @@
 
 <%= turbo_frame_tag dom_id(movie) do %>
 
-  <div class="
-    rounded-xl border border-transparent bg-zinc-900 transition
-    hover:border-green-600
-    <%= 'opacity-60' unless viewed %>
-  ">
+  <div
+    data-movie-card
+    data-movie-url="<%= movie_path(movie) %>"
+    class="
+      cursor-pointer rounded-xl border border-transparent bg-zinc-900 transition
+      hover:border-green-600
+      <%= 'opacity-60' unless viewed %>
+    "
+  >
 
     <div class="relative">
       <%= link_to movie_path(movie), data: { turbo: false } do %>
