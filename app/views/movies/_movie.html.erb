@@ -27,18 +27,22 @@
           Viewed
         </span>
       <% end %>
+
+      <span class="compact-year absolute bottom-2 right-2 rounded bg-zinc-900/80 px-2 py-1 text-xs font-medium text-zinc-300 backdrop-blur-sm">
+        <%= movie.year %>
+      </span>
     </div>
 
     <div class="p-4">
-      <h2 class="text-lg font-semibold text-white">
+      <h2 class="text-lg font-semibold text-white compact-title">
         <%= movie.title %>
       </h2>
 
-      <p class="mt-1 text-sm text-zinc-400">
+      <p class="mt-1 text-sm text-zinc-400 movie-year">
         <%= movie.year %>
       </p>
 
-      <div class="mt-4">
+      <div class="mt-4 compact-button">
         <%= render "movies/viewed_button",
             movie: movie,
             user_movie: user_movie %>
