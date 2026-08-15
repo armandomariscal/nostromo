@@ -8,9 +8,9 @@
 
 <%= turbo_stream.replace "movie-progress" do %>
   <%= render "movies/progress",
-      total_movies: @total_movies,
-      viewed_movies: @viewed_movies,
-      percentage: @progress_percentage %>
+      total_movies: @current_user.total_movies,
+      viewed_movies: @current_user.viewed_movies,
+      percentage: @current_user.percentage %>
 <% end %>
 
 <%= turbo_stream.replace "movie-cover-#{@movie.id}" do %>
