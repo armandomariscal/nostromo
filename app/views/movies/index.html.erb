@@ -1,16 +1,58 @@
-<div class="min-h-screen bg-zinc-950">
+<div
+  class="min-h-screen bg-zinc-950"
+  data-controller="grid"
+>
   <%= render "navbar",
       total_movies: @total_movies,
       viewed_movies: @viewed_movies,
       progress_percentage: @progress_percentage %>
 
   <main class="mx-auto max-w-7xl px-6 pt-24 pb-10">
-    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+
+    <div class="mb-6 flex items-center justify-between">
+
+      <h1 class="text-xl font-semibold text-zinc-100">
+        Movies
+      </h1>
+
+      <div class="flex gap-1 rounded-lg border border-zinc-800 bg-zinc-900 p-1">
+
+        <button
+          type="button"
+          data-grid-target="button"
+          data-action="click->grid#select"
+          data-columns="5"
+          class="rounded-md bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-100"
+        >
+          5
+        </button>
+
+        <button
+          type="button"
+          data-grid-target="button"
+          data-action="click->grid#select"
+          data-columns="7"
+          class="rounded-md px-3 py-1.5 text-xs font-medium text-zinc-400"
+        >
+          7
+        </button>
+
+      </div>
+
+    </div>
+
+    <div
+      data-grid-target="grid"
+      class="grid grid-cols-5 gap-8"
+    >
+
       <% @movies.each do |movie| %>
         <%= render "movie",
             movie: movie,
             current_user: @current_user %>
       <% end %>
+
     </div>
+
   </main>
 </div>
