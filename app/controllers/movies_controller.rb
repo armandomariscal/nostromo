@@ -1,10 +1,12 @@
 require "json"
 
 class MoviesController < ApplicationController
+  include ProgressTracking
+
   before_action :set_current_user
   before_action :set_movie, only: :show
   before_action :set_user_movie, only: :show
-  before_action :set_progress
+  before_action :set_progress, only: :index
 
   def index
     @movies = Movie.includes(:user_movies).order(:year)
@@ -35,18 +37,4 @@ class MoviesController < ApplicationController
     @user_movie = @current_user.user_movies.find_by(movie: @movie)
   end
 
-  def set_progress
-    @total_movies = Movie.count
-
-    @viewed_movies = @current_user.user_movies
-                                  .where(viewed: true)
-                                  .count
-
-    @progress_percentage =
-      if @total_movies.zero?
-        0
-      else
-        (@viewed_movies.to_f / @total_movies * 100).round
-      end
-  end
 end

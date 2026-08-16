@@ -1,7 +1,9 @@
 class ReviewsController < ApplicationController
+  include ProgressTracking
+
   before_action :set_current_user
   before_action :set_movie
-  before_action :set_progress, only: [:new, :create]
+  before_action :set_progress, only: %i[new create]
 
   def new
     @review = Review.new
@@ -26,21 +28,6 @@ class ReviewsController < ApplicationController
 
   def set_movie
     @movie = Movie.find(params[:movie_id])
-  end
-
-  def set_progress
-    @total_movies = Movie.count
-
-    @viewed_movies = @current_user.user_movies
-                                  .where(viewed: true)
-                                  .count
-
-    @progress_percentage =
-      if @total_movies.zero?
-        0
-      else
-        (@viewed_movies.to_f / @total_movies * 100).round
-      end
   end
 
   def review_params
