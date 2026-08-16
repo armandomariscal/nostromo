@@ -58,6 +58,34 @@
           ★ View reviews (<%= movie.reviews.count %>)
         </button>
       </div>
+
+      <% review = movie.latest_review %>
+
+      <% if review %>
+        <div class="mt-6 rounded-lg bg-zinc-800 p-4">
+          <p class="text-xs uppercase tracking-widest text-zinc-500">
+            Latest review
+          </p>
+
+          <div class="mt-2 flex items-center justify-between">
+            <span class="font-semibold text-white">
+              <%= review.movie_title %>
+            </span>
+
+            <span class="text-sm text-zinc-400">
+              <%= review.movie_year %>
+            </span>
+          </div>
+
+          <p class="mt-2 text-yellow-400">
+            ★ <%= review.rating %>/10
+          </p>
+
+          <p class="mt-2 text-sm text-zinc-300">
+            <%= review.content %>
+          </p>
+        </div>
+      <% end %>
     </section>
   </div>
 

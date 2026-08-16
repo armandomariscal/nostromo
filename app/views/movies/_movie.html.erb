@@ -28,6 +28,12 @@
         </span>
       <% end %>
 
+      <% if movie.reviewed? %>
+        <span class="absolute bottom-2 left-2 rounded bg-zinc-900/80 px-2 py-1 text-xs font-medium text-yellow-400 backdrop-blur-sm">
+          ★ <%= movie.average_rating %>
+        </span>
+      <% end %>
+
       <span class="compact-year absolute bottom-2 right-2 rounded bg-zinc-900/80 px-2 py-1 text-xs font-medium text-zinc-300 backdrop-blur-sm">
         <%= movie.year %>
       </span>
