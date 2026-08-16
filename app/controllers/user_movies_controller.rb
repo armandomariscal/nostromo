@@ -1,11 +1,9 @@
 class UserMoviesController < ApplicationController
   def update
     @current_user = User.first
-
     @movie = Movie.find(params[:movie_id])
 
-    @user_movie = UserMovie.find_or_create_by!(
-      user: @current_user,
+    @user_movie = @current_user.user_movies.find_or_create_by!(
       movie: @movie
     )
 
