@@ -7,7 +7,7 @@ module Progressable
     user_movies.where(viewed: true).count
   end
 
-  def percentage
+  def progress_percentage
     return 0 if total_movies.zero?
 
     (viewed_movies.to_f / total_movies * 100).round
